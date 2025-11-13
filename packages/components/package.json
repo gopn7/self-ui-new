@@ -2,7 +2,7 @@
   "name": "@gopn7/components",
   "registry": "https://npm.pkg.github.com/gopn7",
   "private": false,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "React 基础组件库核心包",
   "moduleResolution": "bundler",
   "types": "./dist/index.d.ts",
