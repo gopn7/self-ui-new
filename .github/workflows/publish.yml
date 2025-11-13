@@ -1,4 +1,4 @@
-name: 自动发布 components 子包到 GitHub Packages
+name: 自动发布 components 子包到 GitHub Packages2.0
 on:
   # 新增：允许手动触发
   workflow_dispatch:
