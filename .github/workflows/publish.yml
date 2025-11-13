@@ -42,4 +42,4 @@ jobs:
       - name: 发布子包
         run: cd packages/components && pnpm publish --no-git-checks
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.SELF_UI_CIC_PAT }}
