@@ -1,14 +1,15 @@
 name: 自动发布 components 子包到 GitHub Packages
 on:
-  # 修正分支为 master（匹配你的本地分支）
+  # 新增：允许手动触发
+  workflow_dispatch:
   push:
-    branches: [ master ]  # 改为 master，与你的实际分支一致
+    branches: [ master ]
     paths:
       - "packages/components/**"
   release:
     types: [ published ]
     tags:
-      - "components-v*"  # 标签规则正确，无需修改
+      - "components-v*"
 
 permissions:
   contents: read
@@ -38,20 +39,7 @@ jobs:
       - name: 安装依赖
         run: pnpm install
 
-      # 移除单独的 cd 步骤，改用工作目录参数统一指定子包路径
-      - name: 运行子包测试（若有）
-        run: pnpm test
-        working-directory: ./packages/components  # 直接指定工作目录
-
-      # 注释掉自动版本递增（避免与手动标签冲突）
-      # - name: 自动递增子包版本
-      #   run: pnpm run release:components --release-as patch
-      #   working-directory: ./packages/components
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: 发布子包
-        run: pnpm publish --no-git-checks
-        working-directory: ./packages/components  # 明确在子包目录执行
+        run: cd packages/components && pnpm publish --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
