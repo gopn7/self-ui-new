@@ -37,7 +37,7 @@ jobs:
           version: 8
 
       - name: 安装依赖
-        run: pnpm install
+        run: cd packages/components && pnpm install
 
       - name: 发布子包
         run: cd packages/components && pnpm publish --no-git-checks
