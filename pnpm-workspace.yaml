@@ -1,0 +1,7 @@
+
+packages:
+  # - "packages/**" # 确保 components 目录被 PNPM 扫描
+
+# 关键：允许子包访问 Storybook 的内部依赖
+  - 'packages/components'
+  - 'packages/docs-site'

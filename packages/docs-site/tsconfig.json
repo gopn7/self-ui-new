@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "moduleResolution": "bundler",
+    
+    "outDir": "../../dist/docs-site", // 可选，若需要编译输出（文档站点一般无需发布，可省略）
+    "rootDir": ".",
+    // 可根据需要调整其他编译选项（如关闭declaration，因为文档站点无需发布类型）
+  },
+  "include": [".storybook/**/*", "stories/**/*", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules", "dist", "**/__tests__", "**/*.test.ts", "**/*.test.tsx"]
+}

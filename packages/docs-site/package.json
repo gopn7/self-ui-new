@@ -1,0 +1,36 @@
+{
+  "name": "@self-ui/docs-site",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "storybook": "storybook dev -p 6006",
+    "build:storybook":"storybook build -o ../../dist/docs-site",
+    "lint": "eslint .storybook/**/*.{ts,tsx} stories/**/*.{ts,tsx}"
+  },
+  "dependencies": {
+    "@self-ui/components": "workspace:^1.0.0",
+    "@self-ui/utils": "workspace:^1.0.0",
+    "@storybook/mdx2-csf": "^1.1.0",
+    "highlight.js": "^11.11.1",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+  
+    "@chromatic-com/storybook": "4.1.2",
+    "@mdx-js/react": "^3.1.1",
+    "@storybook/addon-a11y": "10.0.6",
+    "@storybook/addon-docs": "^10.0.6",
+    "@storybook/addon-onboarding": "10.0.6",
+    "@storybook/addon-vitest": "10.0.6",
+    "@storybook/react-vite": "^10.0.6",
+    "eslint-plugin-storybook": "10.0.6",
+    "storybook": "^10.0.6",
+    "react-docgen-typescript": "^2.4.0",
+
+    "vitest": "^4.0.8",
+    "@vitest/coverage-v8": "^4.0.8",
+    "@vitest/browser-playwright": "^4.0.8",
+    "playwright": "^1.56.1"
+  }
+}
