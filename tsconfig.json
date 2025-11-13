@@ -1,0 +1,56 @@
+{
+  "compilerOptions": {
+    // 修复类型引用名称
+    "types": ["jest"],
+    "typeRoots": ["node_modules/@types"],
+
+    // 编译目标与模块规范
+    "target": "ES2020",         // 兼容现代浏览器/Node环境
+    "module": "ESNext",         // 支持ESM模块（与Vite的ESM机制对齐）
+    "moduleResolution": "Node", // 采用Node.js的模块解析策略
+    
+     // React JSX支持
+    "jsx": "react-jsx",         // 支持React 17+的自动JSX转换
+    
+    // 类型声明与源码映射（用于发布后的类型提示和调试）
+    "declaration": true,        // 生成.d.ts类型声明文件
+    "declarationMap": true,     // 生成类型声明的源码映射（方便调试）
+    "sourceMap": true,          // 生成源码映射
+    
+    // 输出与根目录      
+    "rootDir": ".",             // 根源码目录
+    
+    // 严格类型检查（保障组件库类型安全，可根据需求调整）
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    
+    // 模块互操作性（兼容CommonJS和ESM）
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    
+    // 性能与兼容性
+    "skipLibCheck": true,       // 跳过第三方类型库的检查（加快编译）
+    "forceConsistentCasingInFileNames": true,
+    
+    // 路径别名（与Vite的resolve.alias保持一致，方便跨包导入）
+    "paths": {
+      "@components/*": ["./packages/components/*"],
+      "@utils/*": ["./packages/utils/*"],
+      "@hooks/*": ["./packages/components/hooks/*"],
+      "@docs/*": ["./packages/docs-site/*"]
+    }
+  },
+  "exclude": ["node_modules", "dist", "**/node_modules", "**/dist","**/__tests__", "**/*.test.ts", "**/*.test.tsx"], // 排除不需要编译的目录
+    "include": [
+      "packages/**/*",
+       "setupTests.ts",
+        "jest.config.ts",
+        "_mocks_"        
+    ] // 包含所有子包的源码
+}

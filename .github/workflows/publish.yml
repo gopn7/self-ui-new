@@ -1,0 +1,57 @@
+name: 自动发布 components 子包到 GitHub Packages
+
+# 触发条件：仅 components 子包修改时触发（精准触发，避免无用运行）
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - "packages/components/**" # 仅监听子包目录的修改
+  release:
+    types: [ published ]
+    tags:
+      - "components-v*" # 仅监听子包前缀的标签（如 components-v1.0.1）
+
+# 权限不变（仍需 packages:write 发布权限）
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  publish-components:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # 拉取所有 Git 提交记录（用于生成 CHANGELOG）
+
+      - name: 配置 Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          registry-url: https://npm.pkg.github.com/
+          scope: '@gopn7' # 作用域仍为你的 GitHub 用户名
+
+      - name: 安装 pnpm（若 CI 环境未预装）
+        uses: pnpm/action-setup@v3
+        with:
+          version: 8 # 匹配你本地的 pnpm 版本
+
+      - name: 安装工作区所有依赖（子包共享根目录依赖）
+        run: pnpm install # 根目录执行，自动安装所有子包依赖
+
+      - name: 切换到 components 子包目录
+        run: cd packages/components # 后续步骤仅针对子包执行
+
+      - name: 运行子包测试（可选，无测试可删除）
+        run: pnpm test # 若子包有单独测试脚本，会执行 packages/components 的 test
+
+      - name: 自动递增子包版本（可选，替代手动执行 release:components）
+        run: pnpm run release:components --release-as patch # patch/minor/major 按需求选
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # 允许推送版本标签到仓库
+
+      - name: 发布 components 子包到 GitHub Packages
+        run: pnpm publish --no-git-checks # 子包目录执行发布
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,55 @@
+{
+  "name": "@gopn7/self-ui",
+  "private": false,
+  "version": "1.0.0",
+  "type": "module",
+  "workspaces": [
+    "components/*",
+    "docs-site"
+  ],
+  "scripts": {
+    "lint": "eslint .",
+    "prepare": "husky install",
+    "storybook:docs": "pnpm --filter @self-ui/docs-site storybook",
+    "build:storybook:docs": "pnpm --filter @self-ui/docs-site build-storybook",
+    "build:components": "pnpm --filter @self-ui/components build",
+    "test:components": "pnpm --filter @self-ui/components test",
+    "release": "standard-version",
+    "release:patch": "standard-version --release-as patch",
+    "release:minor": "standard-version --release-as minor",
+    "release:major": "standard-version --release-as major"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "devDependencies": {
+    "@storybook/addon-vitest": "10.0.6",
+    "@storybook/react-vite": "^10.0.6",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^24.10.0",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
+    "@vitejs/plugin-react": "5.1.0",
+    "@vitejs/plugin-react-swc": "^4.1.0",
+    "@vitest/browser-playwright": "^4.0.8",
+    "commitizen": "^4.3.1",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^9.0.0",
+    "globals": "^16.4.0",
+    "husky": "^8.0.3",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^30.2.0",
+    "lint-staged": "^15.2.0",
+    "prettier": "^3.2.5",
+    "serve": "^14.2.5",
+    "standard-version": "^9.5.0",
+    "ts-jest": "^29.4.5",
+    "ts-node": "^10.9.2",
+    "typescript": "~5.9.3",
+    "vite": "6.4.1",
+    "vitest": "^4.0.8"
+  }
+}
