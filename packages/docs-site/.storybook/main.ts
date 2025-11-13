@@ -42,6 +42,7 @@ const config: StorybookConfig = {
   },
   viteFinal: async (viteConfig:any) => {
     // 确保 monorepo 中只使用一个 react / react-dom / jsx-runtime 实例
+     viteConfig.base = './'; 
     viteConfig.resolve = viteConfig.resolve || {};
     viteConfig.resolve.alias = [
       ...(viteConfig.resolve.alias || []),

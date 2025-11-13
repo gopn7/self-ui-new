@@ -9,7 +9,6 @@
   },
   "dependencies": {
     "@self-ui/components": "workspace:^1.0.0",
-    "@self-ui/utils": "workspace:^1.0.0",
     "@storybook/mdx2-csf": "^1.1.0",
     "highlight.js": "^11.11.1",
     "react": "^19.2.0",

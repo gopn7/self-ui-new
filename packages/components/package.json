@@ -1,5 +1,6 @@
 {
   "name": "@self-ui/components",
+  "registry": "https://npm.pkg.github.com/",
   "private": false,
   "version": "1.0.0",
   "description": "React 基础组件库核心包",
